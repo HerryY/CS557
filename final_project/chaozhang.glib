@@ -1,0 +1,76 @@
+##OpenGL GLIB
+LookAt  0 0 -20  0 0 0  0 1 0
+
+Perspective 70
+
+
+Vertex   chaozhang.vert
+Fragment chaozhang.frag
+Program  OvalNoise                                               \
+        Ad <.01 1. .5>  Bd <.01 .1 .5>                       \
+        NoiseAmp <0. 10. 10.>  NoiseFreq <0. 1. 10.>      	 \
+        Alpha <0. 1. 1.>   mColor {1., .5, 0. }                                    \
+        Tol <0. 0. 1.>                   			\
+		UseChromaDepth <false> \
+		ChromaRed <-10. -5. -1.>  ChromaBlue <-10. -3. -1.> 	\
+
+PushMatrix		
+		Translate -5 0 -5			# move away from the eye (= gluLookAt)
+		Rotate -45  0. 1. 0.		
+Obj deer.obj
+PopMatrix
+
+
+Vertex	chaozhang1.vert
+Fragment	chaozhang1.frag
+Program    Coscos					\
+		Flat <false>				\
+		A <-2. .2 2.>				\
+		B <-10. 10. 10.>				\
+		C <-10. 10. 10.>				\
+        NoiseAmp <0. 2.5 10.>			\
+        NoiseFreq <0. 1. 10.>			\
+        Ka <0. 0.5 1.0>                        \
+        Kd <0. 0.6 1.0>                        \
+        Ks <0. 0.3 1.0>                        \
+        Shininess <1. 10. 50.>               \
+        LightX <-20. 5. 20.>                   \
+        LightY <-20. 10. 20.>                  \
+        LightZ <-20. 20. 20.>                  \
+        uColor {1. .7 0. 1.}                    \
+        SpecularColor {1. 1. 1. 1.}
+PushMatrix
+
+		Translate 5 0 -5			# move away from the eye (= gluLookAt)
+		Rotate 45  0. 1. 0.		
+Obj deer1.obj
+PopMatrix 
+
+Vertex	       tes.vert
+TessControl    tes.tcs
+TessEvaluation tes.tes
+Geometry       tes.geom
+Fragment       tes.frag
+Program 	MidTriangle \
+			uOuter01 <1 1 20> \
+			uOuter12 <1 1 20> \
+			uOuter20 <1 1 20> \
+			uInner <1 1 20> \
+			uZ01 <-5 1 10.> \
+			uZ12 <-5 2 10.> \
+			uZ20 <-5 2 10> \
+			uAdaptToZs <false> \
+			uShrink <0. 0.6 1.> \
+			uKa <0. 0.6 1.0> \
+			uKd <0. 0.7 1.0> \
+			uKs <0. 0.2 1.0> \
+			uShininess <3. 10. 1000.> \
+			uLightX <-10. 0. 10.> 	uLightY <-10. 8. 10.> 	uLightZ <-10. 8. 10.>\
+Color 1. .5 2.
+NumPatchVertices 3
+glBegin gl_patches
+Obj deer2.obj
+	glVertex 0. 0. 0.
+	glVertex 2. 0. 0.
+	glVertex 0. 2. 0.
+glEnd
