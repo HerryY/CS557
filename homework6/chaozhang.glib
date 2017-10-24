@@ -1,0 +1,16 @@
+##OpenGL GLIB
+LookAt  0 0 7  0 0 0  0 1 0
+
+Perspective 70
+
+Vertex   chaozhang.vert
+Fragment chaozhang.frag
+Program  OvalNoise                                               \
+        Ad <.01 1. .5>  Bd <.01 .1 .5>                       \
+        NoiseAmp <0. 10. 10.>  NoiseFreq <0. 1. 10.>      	 \
+        Alpha <0. 1. 1.>   mColor {1., .5, 0. }                                    \
+        Tol <0. 0. 1.>                   			\
+		UseChromaDepth <false> \
+		ChromaRed <-10. -5. -1.>  ChromaBlue <-10. -3. -1.> 	\
+		
+Obj deer.obj
